@@ -16,7 +16,7 @@ public class ClienteServiceImpl implements ClienteService {
     private ClienteRepository clienteRepository;
 
     @Override
-    public Cliente saveCliente(Cliente cliente) {
+    public Cliente save(Cliente cliente) {
         if (clienteRepository.existsByDni(cliente.getDni())) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Ya existe un cliente con el DNI:" + cliente.getDni());
         }
@@ -35,17 +35,29 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public Cliente updateCliente(Cliente cliente, long id) {
-        Cliente existingEmpleado = clienteRepository.findById(id).orElseThrow(
-                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Empleado no encontrado con Id: " + id));
-        clienteRepository.save(cliente);
-        return existingEmpleado;
+    public Cliente findClienteByDni(String dni){
+        return clienteRepository.findByDni(dni).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente no encontrado con Dni: " + dni));
+    }
+
+    @Override
+    public Cliente updateCliente(Cliente cliente) {
+        if (clienteRepository.existsById(cliente.getId())){
+            return clienteRepository.save(cliente);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente no encontrado con Id: " + cliente.getId());
+        }
     }
 
     @Override
     public void deleteCliente(long id) {
         clienteRepository.findById(id).orElseThrow(() ->
-                new ResponseStatusException(HttpStatus.NOT_FOUND, "Empleado no encontrado con Id: " + id));
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente no encontrado con Id: " + id));
         clienteRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Cliente> findByMarca(String marca) {
+        return clienteRepository.findClientesByCocheMarca(marca);
     }
 }

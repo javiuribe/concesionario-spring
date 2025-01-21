@@ -17,13 +17,13 @@ public class ClienteController {
     private ClienteService clienteService;
 
     @PostMapping()
-    public ResponseEntity<Cliente> saveCliente(@RequestBody Cliente empleado){
+    public ResponseEntity<Cliente> save(@RequestBody Cliente empleado){
         System.out.println("Recibido: " + empleado);
-        return new ResponseEntity<>(clienteService.saveCliente(empleado),
+        return new ResponseEntity<>(clienteService.save(empleado),
                 HttpStatus.CREATED);
     }
     @GetMapping
-    public List<Cliente> getAllClientes(){
+    public List<Cliente> findAll(){
         return clienteService.getAllClientes();
     }
 
@@ -35,15 +35,15 @@ public class ClienteController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Cliente> updateEmpleado(@PathVariable("id") long id
-            ,@RequestBody Cliente empleado){
-        return new ResponseEntity<>(clienteService.updateCliente(empleado, id),
+    public ResponseEntity<Cliente> updateCliente(@PathVariable("id") long id
+            , @RequestBody Cliente empleado){
+        return new ResponseEntity<>(clienteService.updateCliente(empleado),
                 HttpStatus.OK);
     }
     // delete empleado REST API
     // http://localhost:8080/api/empleado/1
     @DeleteMapping("{id}")
-    public ResponseEntity<String> deleteEmpleado(@PathVariable("id") long id){
+    public ResponseEntity<String> deleteCliente(@PathVariable("id") long id){
         clienteService.deleteCliente(id);
         return new ResponseEntity<>("Empleado borrado correctamente!.", HttpStatus.OK);
     }

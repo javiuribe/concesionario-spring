@@ -3,6 +3,7 @@ package com.example.concesionario.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
@@ -13,10 +14,11 @@ import java.util.Objects;
 @Data
 @AllArgsConstructor //Genera constructor con parámetros
 @NoArgsConstructor //Genera constructor sin parámetros
+@EqualsAndHashCode
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     @Column(nullable = false, unique = true)
     private String dni;
     private String nombre;
@@ -24,5 +26,7 @@ public class Cliente {
     private String telefono;
     @OneToMany(mappedBy = "propietario", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<Coche> coches = new ArrayList<>();
+
+
 
 }

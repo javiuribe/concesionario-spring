@@ -5,9 +5,15 @@ import com.example.concesionario.model.Cliente;
 import java.util.List;
 
 public interface ClienteService {
-    Cliente saveCliente(Cliente empleado);
+    Cliente save(Cliente empleado);
     List<Cliente> getAllClientes();
     Cliente findClienteById(long id);
-    Cliente updateCliente(Cliente empleado, long id);
+
+    Cliente findClienteByDni(String dni);
+
+    Cliente updateCliente(Cliente cliente);
+
     void deleteCliente(long id);
+
+    List<Cliente> findByMarca(String ford);
 }
