@@ -17,9 +17,8 @@ public class ClienteController {
     private ClienteService clienteService;
 
     @PostMapping()
-    public ResponseEntity<Cliente> save(@RequestBody Cliente empleado){
-        System.out.println("Recibido: " + empleado);
-        return new ResponseEntity<>(clienteService.save(empleado),
+    public ResponseEntity<Cliente> save(@RequestBody Cliente cliente){
+        return new ResponseEntity<>(clienteService.save(cliente),
                 HttpStatus.CREATED);
     }
     @GetMapping
@@ -27,17 +26,17 @@ public class ClienteController {
         return clienteService.getAllClientes();
     }
 
-    // http://localhost:8080/api/empleados/1
+    // http://localhost:8080/api/clientes/1
     @GetMapping("{id}")
-    public ResponseEntity<Cliente> findClienteById(@PathVariable("id") long empleadoId){
-        return new ResponseEntity<>(clienteService.findClienteById(empleadoId),
+    public ResponseEntity<Cliente> findClienteById(@PathVariable("id") long clienteId){
+        return new ResponseEntity<>(clienteService.findClienteById(clienteId),
                 HttpStatus.OK);
     }
 
     @PutMapping("{id}")
     public ResponseEntity<Cliente> updateCliente(@PathVariable("id") long id
-            , @RequestBody Cliente empleado){
-        return new ResponseEntity<>(clienteService.updateCliente(empleado),
+            , @RequestBody Cliente cliente){
+        return new ResponseEntity<>(clienteService.updateCliente(cliente),
                 HttpStatus.OK);
     }
     // delete empleado REST API
