@@ -10,8 +10,8 @@ import java.util.Objects;
 
 @Entity
 @Data
-@AllArgsConstructor //Genera constructor con parámetros
-@NoArgsConstructor //Genera constructor sin parámetros
+@AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode
 public class Coche {
     @Id
@@ -24,6 +24,7 @@ public class Coche {
     @ManyToOne(cascade = CascadeType.ALL)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
+    @JsonIgnore
     private Cliente propietario;
 
 }

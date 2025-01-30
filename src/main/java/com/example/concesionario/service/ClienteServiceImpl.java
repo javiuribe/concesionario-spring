@@ -1,12 +1,14 @@
 package com.example.concesionario.service;
 
 import com.example.concesionario.model.Cliente;
+import com.example.concesionario.model.Coche;
 import com.example.concesionario.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,6 +21,9 @@ public class ClienteServiceImpl implements ClienteService {
     public Cliente save(Cliente cliente) {
         if (clienteRepository.existsByDni(cliente.getDni())) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Ya existe un cliente con el DNI:" + cliente.getDni());
+        }
+        for (Coche coche : cliente.getCoches()) {
+            coche.setPropietario(cliente);
         }
         return clienteRepository.save(cliente);
     }

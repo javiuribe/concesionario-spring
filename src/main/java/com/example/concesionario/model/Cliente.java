@@ -27,6 +27,4 @@ public class Cliente {
     @OneToMany(mappedBy = "propietario", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<Coche> coches = new ArrayList<>();
 
-
-
 }
