@@ -16,4 +16,6 @@ public interface ClienteService {
     void deleteCliente(long id);
 
     List<Cliente> findByMarca(String ford);
+
+    List<Cliente> findByNombre(String nombre);
 }

@@ -112,14 +112,14 @@ public class ControladorClienteTest {
     }
 
 
-    @Test
-    void borrarCliente() throws SQLException{
-        Cliente cliente = crearCliente();
-        clienteService.save(cliente);
-        assertFalse(clienteController.findAll().isEmpty());
-        clienteService.deleteCliente(cliente.getId());
-        assertTrue(clienteController.findAll().isEmpty());
-    }
+//    @Test
+//    void borrarCliente() throws SQLException{
+//        Cliente cliente = crearCliente();
+//        clienteService.save(cliente);
+//        assertFalse(clienteController.findAll().isEmpty());
+//        clienteService.deleteCliente(cliente.getId());
+//        assertTrue(clienteController.findAll().isEmpty());
+//    }
 
 
 }

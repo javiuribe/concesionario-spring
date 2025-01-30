@@ -65,4 +65,9 @@ public class ClienteServiceImpl implements ClienteService {
     public List<Cliente> findByMarca(String marca) {
         return clienteRepository.findClientesByCocheMarca(marca);
     }
+
+    @Override
+    public List<Cliente> findByNombre(String nombre) {
+        return clienteRepository.findByNombre(nombre);
+    }
 }
