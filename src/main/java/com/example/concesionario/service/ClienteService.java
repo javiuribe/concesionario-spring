@@ -5,7 +5,7 @@ import com.example.concesionario.model.Cliente;
 import java.util.List;
 
 public interface ClienteService {
-    Cliente save(Cliente empleado);
+    Cliente save(Cliente cliente);
     List<Cliente> findAllClientes();
     Cliente findClienteById(long id);
 
