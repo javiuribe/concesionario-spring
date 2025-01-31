@@ -1,7 +1,6 @@
 package com.example.concesionario.controller;
 
 import com.example.concesionario.model.Cliente;
-import com.example.concesionario.model.Coche;
 import com.example.concesionario.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,7 +30,7 @@ public class ClienteController {
         if (nombre != null) {
             return clienteService.findByNombre(nombre);
         }
-        return clienteService.getAllClientes();
+        return clienteService.findAllClientes();
     }
 
     // http://localhost:8080/api/clientes/1

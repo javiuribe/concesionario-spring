@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ClienteService {
     Cliente save(Cliente empleado);
-    List<Cliente> getAllClientes();
+    List<Cliente> findAllClientes();
     Cliente findClienteById(long id);
 
     Cliente findClienteByDni(String dni);
