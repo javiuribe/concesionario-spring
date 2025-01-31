@@ -22,9 +22,7 @@ public class ClienteServiceImpl implements ClienteService {
         if (clienteRepository.existsByDni(cliente.getDni())) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Ya existe un cliente con el DNI:" + cliente.getDni());
         }
-        for (Coche coche : cliente.getCoches()) {
-            coche.setPropietario(cliente);
-        }
+        cliente.getCoches().forEach(coche -> coche.setPropietario(cliente));
         return clienteRepository.save(cliente);
     }
 
