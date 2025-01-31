@@ -36,7 +36,6 @@ public class ClienteController {
     // http://localhost:8080/api/clientes/1
     @GetMapping("{id}")
     public ResponseEntity<Cliente> findClienteById(@PathVariable("id") long clienteId) {
-        clienteService.findClienteById(clienteId).getDni();
         return new ResponseEntity<>(clienteService.findClienteById(clienteId),
                 HttpStatus.OK);
     }
