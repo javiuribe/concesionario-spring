@@ -50,12 +50,11 @@ public class ClienteController {
                 HttpStatus.OK);
     }
 
-    // delete empleado REST API
     // http://localhost:8080/api/cliente/1
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteCliente(@PathVariable("id") long id) {
         clienteService.deleteCliente(id);
-        return new ResponseEntity<>("Empleado borrado correctamente!.", HttpStatus.OK);
+        return ResponseEntity.noContent().build();
     }
 
 }
