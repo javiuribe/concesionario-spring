@@ -54,9 +54,11 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public void deleteCliente(long id) {
-        clienteRepository.findById(id).orElseThrow(() ->
-                new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente no encontrado con Id: " + id));
-        clienteRepository.deleteById(id);
+        if (clienteRepository.existsById(id)){
+            clienteRepository.deleteById(id);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente no encontrado con Id: " + id);
+        }
     }
 
     @Override

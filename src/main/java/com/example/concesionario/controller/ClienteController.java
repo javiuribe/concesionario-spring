@@ -16,19 +16,15 @@ public class ClienteController {
     @Autowired  // Inyección automática de la dependencia
     private ClienteService clienteService;
 
-    @PostMapping()
+    @PostMapping
     public ResponseEntity<Cliente> save(@RequestBody Cliente cliente) {
         return new ResponseEntity<>(clienteService.save(cliente), HttpStatus.CREATED);
     }
 
     @GetMapping
-    public List<Cliente> findAll(@RequestParam(value = "marca", required = false) String marca,
-                                 @RequestParam(value = "nombre", required = false) String nombre) {
+    public List<Cliente> findAll(@RequestParam(value = "marca", required = false) String marca) {
         if (marca != null) {
             return clienteService.findByMarca(marca);
-        }
-        if (nombre != null) {
-            return clienteService.findByNombre(nombre);
         }
         return clienteService.findAllClientes();
     }
@@ -41,9 +37,8 @@ public class ClienteController {
     }
 
 
-    @PutMapping("{id}")
-    public ResponseEntity<Cliente> updateCliente(@PathVariable("id") long id
-            , @RequestBody Cliente cliente) {
+    @PutMapping
+    public ResponseEntity<Cliente> updateCliente(@RequestBody Cliente cliente) {
         return new ResponseEntity<>(clienteService.updateCliente(cliente),
                 HttpStatus.OK);
     }
