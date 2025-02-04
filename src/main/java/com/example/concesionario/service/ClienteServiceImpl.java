@@ -47,18 +47,16 @@ public class ClienteServiceImpl implements ClienteService {
     public Cliente updateCliente(Cliente cliente) {
         if (clienteRepository.existsById(cliente.getId())){
             return clienteRepository.save(cliente);
-        } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente no encontrado con Id: " + cliente.getId());
         }
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente no encontrado con Id: " + cliente.getId());
     }
 
     @Override
     public void deleteCliente(long id) {
         if (clienteRepository.existsById(id)){
             clienteRepository.deleteById(id);
-        } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente no encontrado con Id: " + id);
         }
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente no encontrado con Id: " + id);
     }
 
     @Override

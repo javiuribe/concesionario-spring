@@ -38,9 +38,8 @@ public class ClienteController {
 
 
     @PutMapping
-    public ResponseEntity<Cliente> updateCliente(@RequestBody Cliente cliente) {
-        return new ResponseEntity<>(clienteService.updateCliente(cliente),
-                HttpStatus.OK);
+    public Cliente updateCliente(@RequestBody Cliente cliente) {
+        return clienteService.updateCliente(cliente);
     }
 
     // http://localhost:8080/api/cliente/1
